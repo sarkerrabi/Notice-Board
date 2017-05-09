@@ -10,29 +10,35 @@
 </head>
 <body>
 <div class="container">
-  <h1 class="text-center">Notice Board</h1>
-  <h3>{{ uniname }}</h3>
-{#table starts#}
-          <table class="table">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for item,i in notices %}
-                <tr>
-                    <td>{{ i }}</td>
-                    <td>{{ item }}</td>
-                </tr>
+      <h1 class="text-center">Notice Board</h1>
+      <h3>{{ uniname[0] }}</h3>
+    {#table starts#}
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>notices</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i, item in notices %}
+                    <tr>
 
-                {% endfor %}
+                        <td>{{ item }}</td>
+                        <td>{{ i }}</td>
+
+                    </tr>
+
+                    {% endfor %}
 
 
-            </tbody>
-          </table>
-{#table ends#}
+                </tbody>
+              </table>
+    {#table ends#}
+{##}
+
+
+{##}
 </div>
 </body>
 </html>

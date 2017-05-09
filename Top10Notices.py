@@ -2,9 +2,10 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 class Top10Notices:
-    def uniList(self):
-        return ['NSU','AIUB','BRACU','EWU','IUB','IUBAT','UIU','SEU']
+
     def nsu_top10_notice(self):
+        withlink = []
+        links = []
         listNotices = []
         url = 'http://www.northsouth.edu/nsu-announcements/?anaunc_start=0'
         source_code = urllib.request.urlopen(url)
@@ -12,14 +13,24 @@ class Top10Notices:
         soup = BeautifulSoup(source_code.read(), "html.parser")
         count = 1
         for title in soup.find_all('h3'):
-            print(str(count) + ' ' + title.text)
-            listNotices.append(link.text + ' ')
+            # print(str(count) + ' ' + title.text)
+
             for link in title.find_all('a'):
-                print('http://www.northsouth.edu/' + link.get('href'))
+                listNotices.append(link.text + ' ')
+                links.append('http://www.northsouth.edu/' + link.get('href'))
+                # print('http://www.northsouth.edu/' + link.get('href'))
                 count += 1
             if count > 10:
                 break
-        return listNotices
+            withlink = [listNotices,links]
+        return withlink
+
+
+
+
+
+
+
 
     def aiub_top10_notice(self):
         listNotices = []
@@ -137,3 +148,47 @@ class Top10Notices:
             if count > 10:
                 break
         return listNotices
+    def uniList(self):
+        return ['NSU','AIUB','BRACU','EWU','IUB','IUBAT','UIU','SEU']
+    def selected_unis(self):
+        nsu =  self.nsu_top10_notice()
+        aiub = self.aiub_top10_notice()
+        bracu = self.bracu_top10_notice()
+
+        ewu = self.ewu_top10_notice()
+
+        iub = self.iub_top10_notice()
+
+        iubat = self.iubat_top10_notice()
+
+        uiu = self.uiu_top10_notices()
+
+        seu = self.seu_top10_notices()
+        return [nsu,aiub,bracu,ewu,iub,iubat,uiu,seu]
+
+    def selected_unis_length(self):
+        nsu =  list(range(1,len(self.nsu_top10_notice())))
+        aiub = list(range(1,len(self.aiub_top10_notice())))
+        bracu =list(range(1,len(self.bracu_top10_notice())))
+
+        ewu =list(range(1,len(self.ewu_top10_notice())))
+
+        iub =list(range(1,len(self.iub_top10_notice())))
+
+        iubat =list(range(1,len(self.iubat_top10_notice())))
+
+        uiu =list(range(1,len( self.uiu_top10_notices())))
+
+        seu =list(range(1,len(self.aiub_top10_notice())))
+        return [nsu,aiub,bracu,ewu,iub,iubat,uiu,seu]
+
+
+
+
+
+
+
+
+
+
+

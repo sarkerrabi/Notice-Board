@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Notice Board</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center">Notice Board</h1>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+          {{ unilist[0] }}</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body">
+                   <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>notices</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for i,nsuNot,k in nsu_zip  %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        <td><a href={{ k }}>{{ nsuNot }}</a></td>
+
+
+
+                    </tr>
+
+                {% endfor %}
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+{#    <div class="panel panel-default">#}
+{#      <div class="panel-heading">#}
+{#        <h4 class="panel-title">#}
+{#          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">#}
+{#          {{ unilist[0] }}</a>#}
+{#        </h4>#}
+{#      </div>#}
+{#      <div id="collapse2" class="panel-collapse collapse">#}
+{#        <div class="panel-body">#}
+{#          <table class="table table-striped">#}
+{#            <thead>#}
+{#              <tr>#}
+{#                <th>No.</th>#}
+{#                <th>notices</th>#}
+{#              </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{##}
+{#            {% for nos,notices in uni_zip   %}#}
+{#              <tr>#}
+{#                <th>{{ nos }}</th>#}
+{#                <th>{{ notices }}</th>#}
+{#              <th>#}
+{#                  <table>#}
+{#                    <tr>#}
+{##}
+{#                        {% for noi,notis in nos,notices %}#}
+{#                            <th>{{ noi }}</th>#}
+{#                            <th>{{ notis }}</th>#}
+{#                        {% endfor %}#}
+{##}
+{#                    </tr>#}
+{#                  </table>#}
+{#              </tr>#}
+{#            {% endfor %}#}
+{#            </th>#}
+{##}
+{##}
+{#            </tbody>#}
+{#          </table>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+          {{ unilist[2] }}</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
