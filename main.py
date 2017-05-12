@@ -12,7 +12,7 @@ def index():
     noticList = t10n.nsu_top10_notice()
     uniname =  t10n.uniList()
     listNo = list(range(1,len(noticList[0])))
-    return render_template('index.html',notices =zip(noticList[0],listNo),uniname =uniname)
+    return render_template('index.html',notices =zip(noticList[0],listNo,noticList[1]),uniname =uniname)
 
 @app.route('/nlist')
 def nlist():
@@ -20,12 +20,13 @@ def nlist():
     unilist = top10.uniList()
 
     lengths = top10.selected_unis_length()
-    unis = top10.selected_unis()
+    # unis = top10.selected_unis()
     # uni_zip = zip(lengths,unis)
     nsu_zip = zip(list(range(1,len(top10.nsu_top10_notice()[0]))),top10.nsu_top10_notice()[0],top10.nsu_top10_notice()[1])
+    aiub_zip = zip(list(range(1,len(top10.aiub_top10_notice()[0]))),top10.aiub_top10_notice()[0],top10.aiub_top10_notice()[1])
 
 
-    return render_template('nlist.html',unilist=unilist,nsu_zip=nsu_zip)
+    return render_template('nlist.html',unilist=unilist,nsu_zip=nsu_zip,aiub_zip = aiub_zip)
 
 
 

@@ -21,11 +21,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for i, item in notices %}
+                    {% for i, item,link in notices %}
                     <tr>
 
                         <td>{{ item }}</td>
-                        <td>{{ i }}</td>
+                        <td><a href={{ link }}>{{ i }}</a></td>
 
                     </tr>
 

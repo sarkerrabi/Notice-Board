@@ -34,6 +34,7 @@ class Top10Notices:
 
     def aiub_top10_notice(self):
         listNotices = []
+        linksNotices = []
         url = 'http://www.aiub.edu/'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), "html.parser")
@@ -41,12 +42,14 @@ class Top10Notices:
         for li in soup.find_all('div', {'class': 'bs-callout'}):
             for link in li.find_all('a'):
                 listNotices.append(link.text + ' ')
+                linksNotices.append('http://www.aiub.edu' + link.get('href'))
                 # print(str(cnt) + ' ' + link.text)
                 # print('http://www.aiub.edu' + link.get('href'))
                 cnt += 1
             if cnt > 10:
                 break
-        return listNotices
+            withlinks = [listNotices,linksNotices]
+        return withlinks
 
     def bracu_top10_notice(self):
         listNotices = []
