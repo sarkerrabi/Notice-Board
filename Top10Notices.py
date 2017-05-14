@@ -53,6 +53,7 @@ class Top10Notices:
 
     def bracu_top10_notice(self):
         listNotices = []
+        linksNotices = []
         url = 'http://www.bracu.ac.bd/news-archive?field_news_department_tid_selective=46'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), "html.parser")
@@ -60,31 +61,38 @@ class Top10Notices:
         for linkdiv in soup.find_all('div', {'class': 'field-content title'}):
             for link in linkdiv.find_all('a'):
                 listNotices.append(link.text + ' ')
+                linksNotices.append("http://www.bracu.ac.bd" + link.get('href'))
                 # print(str(count) + ' ' + link.text)
                 # print("http://www.bracu.ac.bd" + link.get('href'))
                 count += 1
             if count > 10:
                 break
-        return listNotices
+            withLinks = [listNotices, linksNotices]
+        return withLinks
 
     def ewu_top10_notice(self):
         listNotices = []
+        linksNotices = []
         url = 'http://www.ewubd.edu/category/news/'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), "html.parser")
         count = 1
         for link in soup.find_all('a', {'class': 'post_list_item_title h3'}):
             listNotices.append(link.text + ' ')
+            linksNotices.append(link.get('href'))
             #
             # print(str(count) + ' ' + link.text)
             # print(link.get('href'))
             count += 1
             if count > 10:
                 break
-        return listNotices
+        withlinks = [listNotices,linksNotices]
+
+        return withlinks
 
     def iub_top10_notice(self):
         listNotices = []
+        linksNotices = []
         url = 'http://www.iub.edu.bd/'
         sour_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(sour_code.read(), "html.parser")
@@ -92,15 +100,19 @@ class Top10Notices:
         link_div = soup.find('div', {'class': 'col-lg-5 resources'})
         for link in link_div.find_all('a'):
             listNotices.append(link.text + ' ')
+            linksNotices.append(link.get('href'))
             # print(str(count) + ' ' + link.text)
             # print(link.get('href'))
             count += 1
             if count > 10:
                 break
-        return listNotices
+        withlinks =[listNotices,linksNotices]
+        return withlinks
 
     def iubat_top10_notice(self):
         listNotices = []
+        linksNotices = []
+
         url = 'http://iubat.edu/web1/index.php/notice/'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), "html.parser")
@@ -114,15 +126,19 @@ class Top10Notices:
             link1 = link_div1.find('a')
             if link1 != link:
                 listNotices.append(link.text + ' ')
+                linksNotices.append(link.get('href'))
                 # print(str(count) + ' ' + link.text)
                 # print(link.get('href'))
                 count += 1
                 if count > 10:
                     break
-        return listNotices
+        withlinks = [listNotices, linksNotices]
+        return withlinks
 
-    def uiu_top10_notices(self):
+    def uiu_top10_notice(self):
         listNotices = []
+        linksNotices = []
+
         url = 'http://www.uiu.ac.bd/notices/'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), 'html.parser')
@@ -130,60 +146,38 @@ class Top10Notices:
         for souplink in soup.find_all('h2', {'class': 'entry-title'}):
             link = souplink.find('a')
             listNotices.append(link.text + ' ')
+            linksNotices.append(link.get('href'))
             # print(str(count) + ' ' + link.text)
             # print(link.get('href'))
             count += 1
             if count > 10:
                 break
-        return listNotices
+        withlinks = [listNotices, linksNotices]
+        return withlinks
 
-    def seu_top10_notices(self):
+    def seu_top10_notice(self):
         listNotices = []
+        linksNotices = []
+
         url = 'http://www.seu.ac.bd/notice_board.php'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), 'html.parser')
         count = 1
         for link in soup.find_all('a', {'rel': 'facebox'}):
             listNotices.append(link.text + ' ')
+            linksNotices.append(url + link.get('href'))
             # print(str(count) + ' ' + link.text)
             # print(url + link.get('href'))
             count += 1
             if count > 10:
                 break
-        return listNotices
+        withlinks = [listNotices, linksNotices]
+        return withlinks
+
     def uniList(self):
         return ['NSU','AIUB','BRACU','EWU','IUB','IUBAT','UIU','SEU']
-    def selected_unis(self):
-        nsu =  self.nsu_top10_notice()
-        aiub = self.aiub_top10_notice()
-        bracu = self.bracu_top10_notice()
 
-        ewu = self.ewu_top10_notice()
 
-        iub = self.iub_top10_notice()
-
-        iubat = self.iubat_top10_notice()
-
-        uiu = self.uiu_top10_notices()
-
-        seu = self.seu_top10_notices()
-        return [nsu,aiub,bracu,ewu,iub,iubat,uiu,seu]
-
-    def selected_unis_length(self):
-        nsu =  list(range(1,len(self.nsu_top10_notice())))
-        aiub = list(range(1,len(self.aiub_top10_notice())))
-        bracu =list(range(1,len(self.bracu_top10_notice())))
-
-        ewu =list(range(1,len(self.ewu_top10_notice())))
-
-        iub =list(range(1,len(self.iub_top10_notice())))
-
-        iubat =list(range(1,len(self.iubat_top10_notice())))
-
-        uiu =list(range(1,len( self.uiu_top10_notices())))
-
-        seu =list(range(1,len(self.aiub_top10_notice())))
-        return [nsu,aiub,bracu,ewu,iub,iubat,uiu,seu]
 
 
 
