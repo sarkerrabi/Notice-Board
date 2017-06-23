@@ -10,300 +10,35 @@
 </head>
 <body>
 <div class="container">
-  <h1 class="text-center">Notice Board</h1>
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-          {{ unilist[0] }}</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse">
-        <div class="panel-body">
-                   <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,nsuNot,k in nsu_zip  %}
+      <h1 class="text-center">Notice Board</h1>
+      <h3>{{ uniname[0] }}</h3>
+    {#table starts#}
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>notices</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i, item,link in notices %}
                     <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ k }} target="blank">{{ nsuNot }}</a></td>
 
-
+                        <td>{{ item }}</td>
+                        <td><a href={{ link }} target="blank">{{ i }}</a></td>
 
                     </tr>
 
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-{#  aiub #}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-          {{ unilist[1] }}</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">
-            <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,Not,link in aiub_zip %}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ link }} target="blank">{{ Not }}</a></td>
+                    {% endfor %}
 
 
-
-                    </tr>
-
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-{# BracU  #}
-      <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-          {{ unilist[2] }}</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">
-            <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,Not,link in bracu_zip %}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ link }} target="blank">{{ Not }}</a></td>
+                </tbody>
+              </table>
+    {#table ends#}
+{##}
 
 
-
-                    </tr>
-
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-{#  ewU#}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-          {{ unilist[3] }}</a>
-        </h4>
-      </div>
-      <div id="collapse4" class="panel-collapse collapse">
-        <div class="panel-body">
-            <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,Not,link in ewu_zip %}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ link }} target="blank">{{ Not }}</a></td>
-
-
-
-                    </tr>
-
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-{#IUB  #}
-        <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-          {{ unilist[4] }}</a>
-        </h4>
-      </div>
-      <div id="collapse5" class="panel-collapse collapse">
-        <div class="panel-body">
-            <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,Not,link in iub_zip %}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ link }} target="blank">{{ Not }}</a></td>
-
-
-
-                    </tr>
-
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-{#IUBAT#}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-          {{ unilist[5] }}</a>
-        </h4>
-      </div>
-      <div id="collapse6" class="panel-collapse collapse">
-        <div class="panel-body">
-            <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,Not,link in iubat_zip %}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ link }} target="blank">{{ Not }}</a></td>
-
-
-
-                    </tr>
-
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-{#UIU#}
-      <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
-          {{ unilist[6] }}</a>
-        </h4>
-      </div>
-      <div id="collapse7" class="panel-collapse collapse">
-        <div class="panel-body">
-            <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,Not,link in uiu_zip %}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ link }} target="blank">{{ Not }}</a></td>
-
-
-
-                    </tr>
-
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-{#SEU#}
-      <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
-          {{ unilist[7] }}</a>
-        </h4>
-      </div>
-      <div id="collapse8" class="panel-collapse collapse">
-        <div class="panel-body">
-            <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>notices</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for i,Not,link in seu_zip %}
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td><a href={{ link }} target="blank">{{ Not }}</a></td>
-
-
-
-                    </tr>
-
-                {% endfor %}
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
+{##}
 </div>
-
 </body>
 </html>
