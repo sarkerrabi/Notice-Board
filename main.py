@@ -10,7 +10,10 @@ app = Flask(__name__)
 def nlist():
     t10n = Top10Notices()
     noticList = t10n.nsu_top10_notice()
+    if noticList ==0:
+        noticList = []
     uniname =  t10n.uniList()
+    # t10n.check_url('http://www.northsouth.edu')
     listNo = list(range(1,len(noticList[0])))
     return render_template('nlist.html',notices =zip(noticList[0],listNo,noticList[1]),uniname =uniname)
 

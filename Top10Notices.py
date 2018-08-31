@@ -1,7 +1,10 @@
+import socket
 import urllib.request
 from bs4 import BeautifulSoup
 
+
 class Top10Notices:
+
 
     def nsu_top10_notice(self):
         withlink = []
@@ -12,25 +15,15 @@ class Top10Notices:
 
         soup = BeautifulSoup(source_code.read(), "html.parser")
         count = 1
-        for title in soup.find_all('h3'):
-            # print(str(count) + ' ' + title.text)
-
+        for title in soup.find_all('div', {'class': 'post-scroller-item'}):
             for link in title.find_all('a'):
                 listNotices.append(link.text + ' ')
                 links.append('http://www.northsouth.edu/' + link.get('href'))
-                # print('http://www.northsouth.edu/' + link.get('href'))
                 count += 1
             if count > 10:
                 break
-            withlink = [listNotices,links]
+            withlink = [listNotices, links]
         return withlink
-
-
-
-
-
-
-
 
     def aiub_top10_notice(self):
         listNotices = []
@@ -48,17 +41,17 @@ class Top10Notices:
                 cnt += 1
             if cnt > 10:
                 break
-            withlinks = [listNotices,linksNotices]
+            withlinks = [listNotices, linksNotices]
         return withlinks
 
     def bracu_top10_notice(self):
         listNotices = []
         linksNotices = []
-        url = 'http://www.bracu.ac.bd/news-archive?field_news_department_tid_selective=46'
+        url = 'http://www.bracu.ac.bd/#announcement'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), "html.parser")
         count = 1
-        for linkdiv in soup.find_all('div', {'class': 'field-content title'}):
+        for linkdiv in soup.find_all('div', {'class': 'calender-item clearfix'}):
             for link in linkdiv.find_all('a'):
                 listNotices.append(link.text + ' ')
                 linksNotices.append("http://www.bracu.ac.bd" + link.get('href'))
@@ -86,14 +79,16 @@ class Top10Notices:
             count += 1
             if count > 10:
                 break
-        withlinks = [listNotices,linksNotices]
+        withlinks = [listNotices, linksNotices]
 
         return withlinks
 
     def iub_top10_notice(self):
+
         listNotices = []
         linksNotices = []
         url = 'http://www.iub.edu.bd/'
+
         sour_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(sour_code.read(), "html.parser")
         count = 1
@@ -106,14 +101,14 @@ class Top10Notices:
             count += 1
             if count > 10:
                 break
-        withlinks =[listNotices,linksNotices]
+        withlinks = [listNotices, linksNotices]
         return withlinks
 
     def iubat_top10_notice(self):
         listNotices = []
         linksNotices = []
 
-        url = 'http://iubat.edu/web1/index.php/notice/'
+        url = 'http://www.iubat.edu/web1/?page_id=12249'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), "html.parser")
 
@@ -159,7 +154,7 @@ class Top10Notices:
         listNotices = []
         linksNotices = []
 
-        url = 'http://www.seu.ac.bd/notice_board.php'
+        url = 'https://www.seu.edu.bd/notice_board.php'
         source_code = urllib.request.urlopen(url)
         soup = BeautifulSoup(source_code.read(), 'html.parser')
         count = 1
@@ -175,17 +170,25 @@ class Top10Notices:
         return withlinks
 
     def uniList(self):
-        return ['NSU','AIUB','BRACU','EWU','IUB','IUBAT','UIU','SEU']
+        return ['NSU', 'AIUB', 'BRACU', 'EWU', 'IUB', 'IUBAT', 'UIU', 'SEU']
 
+    def seu_top10_notice007(self):
+        listNotices = []
+        linksNotices = []
+        withlinks = []
+        url = 'http://www.seu.ac.bd/notice_board.php'
+        source_code = urllib.request.urlopen(url)
+        soup = BeautifulSoup(source_code.read(), 'html.parser')
+        count = 1
+        for link in soup.find_all('a', {'rel': 'facebox'}):
+            listNotices.append(link.text + ' ')
+            linksNotices.append(url + link.get('href'))
+            # print(str(count) + ' ' + link.text)
+            # print(url + link.get('href'))
 
-
-
-
-
-
-
-
-
-
-
+            count += 1
+            if count > 10:
+                break
+        withlinks = [listNotices, linksNotices]
+        return withlinks
 
