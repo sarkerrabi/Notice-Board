@@ -1,10 +1,13 @@
-import socket
+import ssl
 import urllib.request
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class Top10Notices:
-
 
     def nsu_top10_notice(self):
         withlink = []
@@ -47,8 +50,9 @@ class Top10Notices:
     def bracu_top10_notice(self):
         listNotices = []
         linksNotices = []
+        context = ssl._create_unverified_context()
         url = 'http://www.bracu.ac.bd/#announcement'
-        source_code = urllib.request.urlopen(url)
+        source_code = urllib.request.urlopen(url, context=context)
         soup = BeautifulSoup(source_code.read(), "html.parser")
         count = 1
         for linkdiv in soup.find_all('div', {'class': 'calender-item clearfix'}):
@@ -66,19 +70,25 @@ class Top10Notices:
     def ewu_top10_notice(self):
         listNotices = []
         linksNotices = []
-        url = 'http://www.ewubd.edu/category/news/'
+        url = 'https://www.ewubd.edu/news/'
         source_code = urllib.request.urlopen(url)
+        # print(source_code)
         soup = BeautifulSoup(source_code.read(), "html.parser")
         count = 1
-        for link in soup.find_all('a', {'class': 'post_list_item_title h3'}):
+        for linkdiv in soup.find_all('div', {'class': 'news-wrap news-wrap-height'}):
+            link = linkdiv.find('h3')
             listNotices.append(link.text + ' ')
-            linksNotices.append(link.get('href'))
-            #
+            linksNotices.append(url)
             # print(str(count) + ' ' + link.text)
-            # print(link.get('href'))
+            # print(url)
             count += 1
+
             if count > 10:
                 break
+
+            # listNotices.append(link.text + ' ')
+            # linksNotices.append(link.get('href'))
+
         withlinks = [listNotices, linksNotices]
 
         return withlinks
@@ -108,18 +118,24 @@ class Top10Notices:
         listNotices = []
         linksNotices = []
 
-        url = 'http://www.iubat.edu/web1/?page_id=12249'
-        source_code = urllib.request.urlopen(url)
-        soup = BeautifulSoup(source_code.read(), "html.parser")
+        url = 'https://iubat.edu/notice/'
+        driver = webdriver.Firefox()
+        driver.get(url)
 
-        link_div1 = soup.find('section', {'class': 'fusion-columns columns fusion-columns-1 columns-1'})
+        try:
+            wait = WebDriverWait(driver, 60)
+            element = wait.until(
+                EC.presence_of_element_located((By.CLASS_NAME, "vc_column-inner"))
 
-        link_div2 = soup.find('div',
-                              {'class': 'fusion-recent-posts avada-container layout-date-on-side layout-columns-1'})
-        count = 1
-        for link in link_div2.find_all('a'):
-            link1 = link_div1.find('a')
-            if link1 != link:
+            )
+
+            source_code = driver.page_source
+            soup = BeautifulSoup(source_code, 'html.parser')
+
+            count = 1
+
+            for link in soup.find_all('a', {'class': 'vc_gitem-link'}):
+
                 listNotices.append(link.text + ' ')
                 linksNotices.append(link.get('href'))
                 # print(str(count) + ' ' + link.text)
@@ -127,6 +143,11 @@ class Top10Notices:
                 count += 1
                 if count > 10:
                     break
+
+
+        finally:
+            driver.quit()
+
         withlinks = [listNotices, linksNotices]
         return withlinks
 
@@ -170,7 +191,7 @@ class Top10Notices:
         return withlinks
 
     def uniList(self):
-        return ['NSU', 'AIUB', 'BRACU', 'EWU', 'IUB', 'IUBAT', 'UIU', 'SEU']
+        return ['North South University(NSU)', 'American International University-Bangladesh(AIUB)', 'BRAC University(BRACU)', 'East West University(EWU)', 'Independent University, Bangladesh(IUB)', 'International University of Business Agriculture and Technology (IUBAT)', 'United International University(UIU)', 'Southeast University(SEU)']
 
     def seu_top10_notice007(self):
         listNotices = []
@@ -191,4 +212,3 @@ class Top10Notices:
                 break
         withlinks = [listNotices, linksNotices]
         return withlinks
-

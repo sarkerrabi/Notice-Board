@@ -65,6 +65,7 @@ def index():
 
 
     return render_template('index.html',bracu_zip=bracu_zip,unilist=unilist,nsu_zip=nsu_zip,aiub_zip = aiub_zip,ewu_zip=ewu_zip,iub_zip=iub_zip,iubat_zip=iubat_zip,uiu_zip=uiu_zip,seu_zip=seu_zip)
+    # return render_template('index.html',bracu_zip=bracu_zip,unilist=unilist,nsu_zip=nsu_zip,aiub_zip = aiub_zip, ewu_zip=ewu_zip, iub_zip=iub_zip,uiu_zip=uiu_zip,seu_zip=seu_zip)
 
 
 
